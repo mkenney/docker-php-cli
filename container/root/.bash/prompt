@@ -1,0 +1,29 @@
+#
+# Set the bash prompt
+# https://wiki.archlinux.org/index.php/Color_Bash_Prompt
+#
+
+# Load color definitions
+. ~/.bash/color
+
+function prompt_command() {
+
+	local -a ps1_lines
+	if [ "$EUID" = "0" ]; then # Root
+		ps1_lines+='\n\[${COLOR_RED_BOLD}\]\u\[${COLOR_NORM_BOLD}\]@\[${COLOR_YELLOW_BOLD}\]\h: \[${COLOR_NORM_BOLD}\]\[$PWD\]'
+	else
+		ps1_lines+='\n\[${COLOR_GREEN_BOLD}\]\u\[${COLOR_NORM_BOLD}\]@\[${COLOR_YELLOW_BOLD}\]\h: \[${COLOR_NORM_BOLD}\]\[$PWD\]'
+	fi
+
+	if [ "$EUID" = "0" ]; then # Root
+		ps1_lines+='\n\[${COLOR_RED_BOLD}\]👀 \[${COLOR_NORM}\] '
+	else
+		ps1_lines+='\n\[${COLOR_GREEN_BOLD}\]⚡\[${COLOR_NORM}\] '
+	fi
+
+	PS1="${ps1_lines[*]}"
+}
+
+export PROMPT_COMMAND=prompt_command
+
+export PS2='\[${COLOR_NORM_BOLD}\]\>\[${COLOR_NORM}\] '

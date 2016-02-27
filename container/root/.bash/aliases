@@ -1,0 +1,30 @@
+# VI mode
+set -o vi
+
+# Platform specific aliases
+platform=`uname`
+if [[ $platform == 'Linux' ]]; then
+	alias ls='ls -aF --time-style=+"%a %Y-%m-%d %T" --color=auto'
+fi
+
+# Other aliases
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias ll='ls -l'
+alias l='ls -1'
+alias e='exit'
+
+alias cls='clear'
+alias csl='clear'
+alias lcs='clear'
+
+alias less='less -R'
+alias more='less'
+alias grep='grep --color=auto'
+alias rsync='rsync --progress'
+
+alias yes="echo no"
+
+alias a="cal"
